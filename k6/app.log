@@ -1,0 +1,62 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :resolveMainClassName
+
+> Task :bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.0)
+
+2026-06-28T13:41:09.338+09:00  INFO 29552 --- [cafun-backend] [           main] com.cafun.backend.BackendApplication     : Starting BackendApplication using Java 17.0.11 with PID 29552 (C:\Users\SS\PycharmProjects\projectwithspring\build\classes\java\main started by SS in C:\Users\SS\PycharmProjects\projectwithspring)
+2026-06-28T13:41:09.342+09:00  INFO 29552 --- [cafun-backend] [           main] com.cafun.backend.BackendApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-06-28T13:41:10.344+09:00  INFO 29552 --- [cafun-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-28T13:41:10.436+09:00  INFO 29552 --- [cafun-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 4 JPA repository interfaces.
+2026-06-28T13:41:11.109+09:00  INFO 29552 --- [cafun-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-06-28T13:41:11.128+09:00  INFO 29552 --- [cafun-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-28T13:41:11.128+09:00  INFO 29552 --- [cafun-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-06-28T13:41:11.212+09:00  INFO 29552 --- [cafun-backend] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1817 ms
+2026-06-28T13:41:11.631+09:00  INFO 29552 --- [cafun-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-28T13:41:11.774+09:00  INFO 29552 --- [cafun-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3348c987
+2026-06-28T13:41:11.776+09:00  INFO 29552 --- [cafun-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-28T13:41:11.800+09:00  INFO 29552 --- [cafun-backend] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/cafun (PostgreSQL 15.18)
+2026-06-28T13:41:11.894+09:00  INFO 29552 --- [cafun-backend] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.034s)
+2026-06-28T13:41:11.911+09:00  INFO 29552 --- [cafun-backend] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-06-28T13:41:11.927+09:00  INFO 29552 --- [cafun-backend] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - create cafes"
+2026-06-28T13:41:11.981+09:00  INFO 29552 --- [cafun-backend] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - create reviews"
+2026-06-28T13:41:12.005+09:00  INFO 29552 --- [cafun-backend] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - add trgm index"
+2026-06-28T13:41:12.023+09:00  INFO 29552 --- [cafun-backend] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 3 migrations to schema "public", now at version v5 (execution time 00:00.052s)
+2026-06-28T13:41:12.138+09:00  INFO 29552 --- [cafun-backend] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-28T13:41:12.210+09:00  INFO 29552 --- [cafun-backend] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-06-28T13:41:12.739+09:00  INFO 29552 --- [cafun-backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-28T13:41:12.806+09:00  WARN 29552 --- [cafun-backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-28T13:41:12.825+09:00  INFO 29552 --- [cafun-backend] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/cafun]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 15.18
+	Default catalog/schema: cafun/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-28T13:41:13.860+09:00  INFO 29552 --- [cafun-backend] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-28T13:41:13.912+09:00  INFO 29552 --- [cafun-backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-28T13:41:13.980+09:00  INFO 29552 --- [cafun-backend] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-28T13:41:14.292+09:00  WARN 29552 --- [cafun-backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-28T13:41:14.382+09:00  INFO 29552 --- [cafun-backend] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-06-28T13:41:14.818+09:00  INFO 29552 --- [cafun-backend] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-06-28T13:41:14.888+09:00  INFO 29552 --- [cafun-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-06-28T13:41:14.896+09:00  INFO 29552 --- [cafun-backend] [           main] com.cafun.backend.BackendApplication     : Started BackendApplication in 6.074 seconds (process running for 6.6)
+2026-06-28T13:41:15.028+09:00  INFO 29552 --- [cafun-backend] [           main] c.c.b.m.c.application.AspectVectorCache  : AspectVectorCache loaded: 0 cafes
+2026-06-28T13:43:50.885+09:00  INFO 29552 --- [cafun-backend] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-28T13:43:50.886+09:00  INFO 29552 --- [cafun-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-28T13:43:50.887+09:00  INFO 29552 --- [cafun-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
