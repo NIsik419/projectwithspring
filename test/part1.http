@@ -1,0 +1,29 @@
+### 회원가입 - 정상
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "email": "test@cafun.com",
+  "password": "password123",
+  "nickname": "테스터"
+}
+
+### 회원가입 - 이메일 중복 (409 기대)
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "email": "test@cafun.com",
+  "password": "password123",
+  "nickname": "중복유저"
+}
+
+### 회원가입 - 유효성 오류 (비밀번호 8자 미만, 400 기대)
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "email": "short@cafun.com",
+  "password": "1234",
+  "nickname": "유저"
+}

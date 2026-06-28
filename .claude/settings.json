@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs -I{} jar tf {})",
+      "Bash(docker info *)",
+      "PowerShell(docker version --format \"Server: {{.Server.Version}}\" 2>&1)",
+      "Bash(xargs grep -l \"RecommendationAlgorithm\")",
+      "Bash(git -C \"c:\\\\Users\\\\SS\\\\PycharmProjects\\\\projectwithspring\" status --short)",
+      "Bash(git -C \"c:\\\\Users\\\\SS\\\\PycharmProjects\\\\projectwithspring\" add .gitattributes .gitignore CLAUDE.md DOMAIN.md TEST.md build.gradle docker-compose.yml gradle/ gradlew gradlew.bat k6/ settings.gradle src/ test/ .claude/)"
+    ]
+  }
+}

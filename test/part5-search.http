@@ -1,0 +1,25 @@
+### 파트 5 - 추천 검색 (aspect 벡터 코사인 유사도)
+### 사전조건: cafe_aspect_vectors 테이블에 데이터 있어야 함
+
+### 추천 검색 (12개 aspect 점수, Aspect enum 순서)
+### TASTE,FOOD,SERVICE,ATMOSPHERE,PRICE,LOCATION,CLEANLINESS,NOISE,WAITING,PARKING,WIFI,SPACE
+GET http://localhost:8080/cafe/search?aspectVector=0.9,0.7,0.8,0.9,0.5,0.6,0.8,0.3,0.4,0.2,0.7,0.8
+Accept: application/json
+
+###
+
+### 상위 5개만
+GET http://localhost:8080/cafe/search?aspectVector=0.9,0.7,0.8,0.9,0.5,0.6,0.8,0.3,0.4,0.2,0.7,0.8&limit=5
+Accept: application/json
+
+###
+
+### 잘못된 벡터 차원 → 400
+GET http://localhost:8080/cafe/search?aspectVector=0.9,0.7,0.8
+Accept: application/json
+
+###
+
+### GET /cafe — aspectScores 이제 채워져야 함 (캐시 데이터 있을 때)
+GET http://localhost:8080/cafe/1
+Accept: application/json

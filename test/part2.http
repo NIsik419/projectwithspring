@@ -1,0 +1,24 @@
+### 로그인 - 정상 (200 + JWT)
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@cafun.com",
+  "password": "password123"
+}
+
+### 로그인 - 잘못된 비밀번호 (401 기대)
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@cafun.com",
+  "password": "wrongpassword"
+}
+
+### JWT로 보호된 엔드포인트 접근 (위 토큰 복사해서 사용)
+GET http://localhost:8080/actuator/health
+Authorization: Bearer {{token}}
+
+### 토큰 없이 접근 (401 기대)
+GET http://localhost:8080/some-protected-endpoint

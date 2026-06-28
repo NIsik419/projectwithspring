@@ -1,0 +1,20 @@
+### 파트 6 - pg_trgm 이름 유사도 검색
+
+### 카페 이름 검색 (GIN 인덱스 활용)
+GET http://localhost:8080/cafe/name-search?q=스타벅스
+Accept: application/json
+
+###
+
+### 결과 수 제한
+GET http://localhost:8080/cafe/name-search?q=카페&limit=5
+Accept: application/json
+
+###
+
+### 인덱스 검증 — psql에서 직접 실행
+### EXPLAIN ANALYZE SELECT * FROM cafes
+###   WHERE similarity(name, '스타벅스') > 0.2
+###   ORDER BY similarity(name, '스타벅스') DESC;
+###
+### 기대 플랜: Bitmap Index Scan on idx_cafes_name_trgm

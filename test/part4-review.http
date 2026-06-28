@@ -1,0 +1,41 @@
+### 파트 4 - review 모듈
+### 사전조건: POST /auth/login 으로 JWT 획득 후 {{token}} 에 설정
+
+### 리뷰 작성 (JWT 필요)
+POST http://localhost:8080/review
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "cafeId": 1,
+  "content": "커피가 정말 맛있고 분위기도 좋아요!"
+}
+
+###
+
+### 카페 리뷰 목록 조회
+GET http://localhost:8080/review?cafeId=1
+Accept: application/json
+
+###
+
+### 존재하지 않는 카페 리뷰 작성 → 404
+POST http://localhost:8080/review
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "cafeId": 9999,
+  "content": "없는 카페"
+}
+
+###
+
+### 인증 없이 리뷰 작성 → 401
+POST http://localhost:8080/review
+Content-Type: application/json
+
+{
+  "cafeId": 1,
+  "content": "토큰 없음"
+}

@@ -1,0 +1,17 @@
+### 파트 3 - cafe 모듈 기본 조회
+
+### 카페 목록 조회
+GET http://localhost:8080/cafe
+Accept: application/json
+
+###
+
+### 카페 단건 조회 (id=1)
+GET http://localhost:8080/cafe/1
+Accept: application/json
+
+###
+
+### 존재하지 않는 카페 (404 확인)
+GET http://localhost:8080/cafe/9999
+Accept: application/json
