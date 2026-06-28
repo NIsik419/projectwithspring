@@ -90,7 +90,7 @@ LIMIT 10;
 | 항목 | 기준 | 상태 |
 |------|------|------|
 | 추천 알고리즘 TestContainers | 5개 케이스 통과 | ✅ |
-| Auth TestContainers | 7개 케이스 통과 | ⬜ |
+| Auth TestContainers | 8개 케이스 통과 (TC5 분리) | ✅ |
 | k6 기준선 측정 | 3개 API 수치 기록 | ⬜ |
 | EXPLAIN ANALYZE | 인덱스 사용 확인 | ⬜ |
 | README 성능 수치 정리 | 최소 1개 개선 before/after | ⬜ |
