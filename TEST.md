@@ -68,7 +68,49 @@ LIMIT 10;
 
 ---
 
-## 4. 트러블슈팅 기록 (측정하면서 추가)
+## 4. 트러블슈팅 기록
+
+### EXPLAIN ANALYZE 결과 — 2026-06-28
+
+**환경**: PostgreSQL 15, cafes 304행, `idx_cafes_name_trgm` GIN 인덱스 생성 완료
+
+#### 문제: `similarity()` 함수 형태 — 인덱스 구조적 미사용
+
+```
+Seq Scan on cafes
+  Filter: (similarity(name, '스타벅스') > 0.2)
+-- enable_seqscan=off 강제 시에도 동일하게 Seq Scan → 인덱스 사용 불가
+```
+
+**원인**: PostgreSQL GIN `gin_trgm_ops`는 `%`, `<->`, `LIKE` 등 **연산자 형태**만 지원.
+`similarity()` 함수 호출은 인덱스를 구조적으로 사용할 수 없음.
+
+#### 수정 후: `%` 연산자 형태 — 인덱스 사용 확인
+
+```
+Bitmap Heap Scan on cafes
+  Recheck Cond: (name % '스타벅스')
+  -> Bitmap Index Scan on idx_cafes_name_trgm
+       Index Cond: (name % '스타벅스')
+```
+
+**수정 내용** (`CafeJpaRepository.java`):
+- `WHERE similarity(name, :keyword) > 0.2 ORDER BY similarity(...) DESC`
+- → `WHERE name % :keyword ORDER BY name <-> :keyword`
+
+**임계값 검증 (키워드 4개)**:
+
+| 키워드 | `>0.2`(수정전) | `%(기본 0.3)` | 누락 |
+|--------|:---:|:---:|------|
+| 스타벅스 | 3 | 3 | 없음 |
+| 커피 | 4 | 3 | 커피빈 성수점 (0.222) |
+| 성수 | 10 | 2 | 할리스·폴바셋 등 8개 |
+| 이디야 | 1 | 0 | **이디야커피 성수역점 (유일한 정답 누락!)** |
+
+→ **V6 마이그레이션**(`ALTER DATABASE cafun SET pg_trgm.similarity_threshold = 0.2`)으로 DB 기본값을 0.2로 설정.
+→ V6 적용 후 4개 키워드 결과 수 완전 일치 확인.
+
+---
 
 ### k6 부하테스트 결과 — 2026-06-28
 
@@ -96,5 +138,5 @@ LIMIT 10;
 | 추천 알고리즘 TestContainers | 5개 케이스 통과 | ✅ |
 | Auth TestContainers | 8개 케이스 통과 (TC5 분리) | ✅ |
 | k6 기준선 측정 | 3개 API 수치 기록 | ✅ (빈 캐시 기준 — 실 데이터 재측정 필요) |
-| EXPLAIN ANALYZE | 인덱스 사용 확인 | ⬜ |
+| EXPLAIN ANALYZE | 인덱스 사용 확인 | ✅ (% 연산자로 수정 후 Bitmap Index Scan 확인) |
 | README 성능 수치 정리 | 최소 1개 개선 before/after | ⬜ |

@@ -8,11 +8,11 @@ import java.util.List;
 
 interface CafeJpaRepository extends JpaRepository<CafeJpaEntity, Long> {
 
-    // GIN 인덱스(idx_cafes_name_trgm) 활용 — similarity 함수는 pg_trgm 확장 필요
+    // % 연산자 사용 — GIN(gin_trgm_ops) 인덱스가 % 연산자만 지원하며 similarity() 함수 형태는 인덱스 미사용
     @Query(value = """
             SELECT * FROM cafes
-            WHERE similarity(name, :keyword) > 0.2
-            ORDER BY similarity(name, :keyword) DESC
+            WHERE name % :keyword
+            ORDER BY name <-> :keyword
             LIMIT :limit
             """, nativeQuery = true)
     List<CafeJpaEntity> findByNameSimilarity(@Param("keyword") String keyword, @Param("limit") int limit);
